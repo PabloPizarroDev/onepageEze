@@ -3,7 +3,6 @@ function contactForm() {
   // detecta el formulario y los inputs
   const $form = d.querySelector(".form"),
     $inputs = d.querySelectorAll(".form [required]");
-  console.log($inputs);
   //por cada input hay un span  nota de error
   $inputs.forEach((input) => {
     const $span = d.createElement("span");
@@ -20,16 +19,13 @@ function contactForm() {
     if (e.target.matches(".form [required]")) {
       let $input = e.target,
         pattern = $input.pattern || $input.dataset.pattern;
-      // console.log($input, pattern);
       if (pattern && $input.value !== "") {
-        // console.log("el input tiene patron");
         let regex = new RegExp(pattern);
         return !regex.exec($input.value)
           ? d.getElementById($input.name).classList.add("is-active")
           : d.getElementById($input.name).classList.remove("is-active");
       }
       if (!pattern) {
-        // console.log("el input no tiene patron");
         return $input.value === ""
           ? d.getElementById($input.name).classList.add("is-active")
           : d.getElementById($input.name).classList.remove("is-active");
